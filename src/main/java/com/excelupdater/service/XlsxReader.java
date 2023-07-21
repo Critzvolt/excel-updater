@@ -1,4 +1,4 @@
-package com.excelupdater;
+package com.excelupdater.service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import com.excelupdater.entity.Substance;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -30,13 +31,14 @@ public class XlsxReader {
                     continue;
                 }
 
-                String indexNo = row.getCell(0).getStringCellValue();
-                String ICE = row.getCell(1).getStringCellValue();
-                String ecNo = row.getCell(2).getStringCellValue();
-                String casNo = row.getCell(3).getStringCellValue();
-                String HSC = row.getCell(5).getStringCellValue();
+                Integer id = row.getRowNum() - 7;
+                String index = row.getCell(0).getStringCellValue();
+                String ice = row.getCell(1).getStringCellValue();
+                String ec = row.getCell(2).getStringCellValue();
+                String cas = row.getCell(3).getStringCellValue();
+                String hsc = row.getCell(5).getStringCellValue();
 
-                Substance substance = new Substance(indexNo, ICE, ecNo, casNo, HSC);
+                Substance substance = new Substance(id, index, ice, ec, cas, hsc);
                 substances.add(substance);
             }
 
