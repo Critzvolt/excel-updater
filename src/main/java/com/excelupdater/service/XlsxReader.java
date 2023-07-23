@@ -2,6 +2,7 @@ package com.excelupdater.service;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -13,10 +14,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class XlsxReader {
 
-    public static List<Substance> getFileContents(String filePath)
+    //public static List<Substance> getFileContents(String filePath)
+    public static List<Substance> getFileContents(InputStream fis)
     {
-        try (FileInputStream fis = new FileInputStream(filePath);
-             Workbook workbook = new XSSFWorkbook(fis)) {
+        //try (FileInputStream fis = new FileInputStream(filePath);
+        try (Workbook workbook = new XSSFWorkbook(fis)) { //czy tu sie XSSFWorkbook popierdoli z InputStream zamiast FileInputStream?
 
             Sheet sheet = workbook.getSheetAt(0); // Assuming the first sheet is used
 
